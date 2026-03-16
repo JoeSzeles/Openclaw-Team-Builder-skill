@@ -165,7 +165,6 @@ For deliverables involving multiple specialists:
 |-----------------|------------------|------------|
 | Code / Engineering | API Tester + Evidence Collector | Reality Checker |
 | UI / Visual | Evidence Collector (screenshots) | Reality Checker |
-| Trading / Strategy | IG (market validation) + Analytics Reporter | CEO |
-| Research / Experiments | Experiment Tracker | Reality Checker |
+| Research / Experiments | Experiment Tracker + Analytics Reporter | Reality Checker |
 | Content / Marketing | Content Creator (peer review) | Brand Guardian |
 | Image / Creative | Visual Storyteller + Brand Guardian | CEO |

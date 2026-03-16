@@ -30,7 +30,7 @@ Analyze deep-space telescope images for star classification with enhanced visual
 | Prompt Engineering | Image Prompt Engineer | Agency Design | Phase 2 |
 | Analysis Loop | Research Lab | Research | Phase 2 |
 | ML Classification | AI Engineer | Agency Engineering | Phase 2 |
-| Data Reporting | Analytics Reporter | Agency Support | Phase 3 |
+| Data Reporting | Analytics Reporter | Agency Specialized | Phase 3 |
 | QA | Evidence Collector | Agency Testing | Phase 3 |
 | Gate | Reality Checker | Agency Testing | Phase 3 |
 
@@ -52,26 +52,20 @@ Analyze deep-space telescope images for star classification with enhanced visual
 Senior PM (scope) → Artist + Image Prompt Engineer (image prep) →
 Research Lab + AI Engineer (classification loop) → Artist (enhanced visuals) →
 Analytics Reporter (report) → Evidence Collector → Reality Checker
-
-### Cross-Roster Integration Points
-- Research Lab (autoresearch methodology) drives the iterative optimization
-- Image Prompt Engineer (Agency Design) crafts prompts for Artist (Core) to enhance images
-- AI Engineer (Agency Engineering) works alongside Research Lab for model tuning
-- Analytics Reporter (Agency Support) formats results from Research Lab experiments
 ```
 
 ### Why This Works
 - **Three rosters active**: Core (CEO, Artist), Agency (5 specialists from 4 divisions), Research Lab
-- **Cross-pollination**: Research methodology applied to image analysis (not just ML training)
-- **Artist + Design pairing**: Image Prompt Engineer structures prompts for Artist's xAI generation
+- **Cross-pollination**: Research methodology applied to image analysis
+- **Artist + Design pairing**: Image Prompt Engineer structures prompts for Artist's image generation
 - **Evidence-based QA**: Agency Testing division validates before shipping
 
 ---
 
-## Test 2: "Optimize Silver Trading Strategy with Neural Brain"
+## Test 2: "Optimize a Prompt Engineering Pipeline"
 
 ### Input Task
-> The silver futures scalper is showing a 25% win rate. Run an optimization experiment to improve it by tuning RSI thresholds, stop-loss distances, and the neural brain's training parameters.
+> Our image generation prompts are producing inconsistent quality. Set up an optimization experiment to improve prompt quality scores by tuning prompt structure, detail level, and style descriptors.
 
 ### Planner Output
 
@@ -79,10 +73,10 @@ Analytics Reporter (report) → Evidence Collector → Reality Checker
 ## Team Proposal
 
 ### Task
-Optimize silver scalper strategy — improve win rate from 25% baseline
+Optimize image generation prompts — improve quality score from baseline
 
 ### Classification
-- Domain: Trading + Research + AI
+- Domain: Creative + Research
 - Mode: Sprint
 - Estimated effort: 1-2 weeks (continuous experiment loops)
 
@@ -91,56 +85,41 @@ Optimize silver scalper strategy — improve win rate from 25% baseline
 | Role | Agent | Roster | Activation Phase |
 |------|-------|--------|-----------------|
 | Leader | CEO | Core | Phase 1 |
-| Market Context | IG | Core | Phase 1 |
+| Prompt Craft | Image Prompt Engineer | Agency Design | Phase 1 |
 | Experiment Loop | Research Lab | Research | Phase 2 |
-| Neural Tuning | AI Engineer | Agency Engineering | Phase 2 |
-| Performance Test | Performance Benchmarker | Agency Testing | Phase 3 |
+| Image Generation | Artist | Core | Phase 2 |
+| Quality Eval | Visual Storyteller | Agency Design | Phase 2 |
+| Tracking | Experiment Tracker | Agency PM | Phase 2 |
 | QA | Evidence Collector | Agency Testing | Phase 3 |
 
 ### Execution Plan
-1. IG provides: current strategy config, trade history, live market data for silver
-2. Research Lab establishes baseline: current win rate (25%), P&L, Sharpe ratio
-3. Research Lab experiment loop:
-   - Metric: win rate (higher is better), secondary: Sharpe ratio
-   - In-scope: RSI buy/sell thresholds, stopDistance, limitDistance, size
-   - Budget: 5-min backtest per parameter combination
-   - Loop: modify one parameter → backtest → compare win rate → keep/discard
-4. AI Engineer tunes neural brain parameters in parallel:
-   - Adjust preference zone neuron allocation
-   - Modify sugar/pain reinforcement magnitudes
-   - Test different feature vector compositions
-5. Performance Benchmarker validates: execution speed, slippage simulation
-6. Evidence Collector verifies: backtest results match live conditions
+1. Image Prompt Engineer establishes baseline prompt structure and scoring criteria
+2. Research Lab runs autoresearch loop:
+   - Metric: average quality score across N generated images
+   - In-scope: prompt structure, detail level, style descriptors, technical terms
+   - Budget: 5 generations per prompt variant
+   - Loop: modify prompt → generate → score → keep/discard
+3. Artist generates images for each prompt variant
+4. Visual Storyteller evaluates narrative quality
+5. Experiment Tracker logs all variants and scores
+6. Evidence Collector validates the winning configuration
 
-### Experiment Ledger (expected output)
-id          metric  status   description
-baseline    25.0    keep     current config — 25% win rate
-exp-001     28.5    keep     RSI buy threshold 25→20
-exp-002     24.0    discard  RSI sell threshold 75→80
-exp-003     31.2    keep     stopDistance 15→12 with RSI 20
-exp-004     30.8    discard  limitDistance 25→35 (worse risk-adjusted)
-exp-005     33.1    keep     neural brain sugar magnitude 2.0→3.5
-exp-006     0.0     crash    batch size 64→256 (OOM on brain)
-...
-
-### Risks
-- Overfitting to historical data — mitigate with out-of-sample validation
-- Live market conditions differ from backtest — staged rollout recommended
-- Neural brain changes affect all instruments — isolate silver experiments
+### Handoff Chain
+Image Prompt Engineer (baseline) → Research Lab + Artist (experiment loop) →
+Experiment Tracker (logging) → Evidence Collector (validate)
 ```
 
 ### Why This Works
-- **IG + Research Lab**: Trading specialist provides domain context, Research Lab provides the experiment methodology
-- **AI Engineer integration**: Neural brain tuning runs as part of the same optimization loop
-- **Measurable outcomes**: Experiment ledger tracks every attempt with keep/discard decisions
-- **Safety**: Performance Benchmarker and Evidence Collector validate before live deployment
+- **Research Lab + Creative pairing**: autoresearch methodology applied to prompt optimization
+- **Measurable metric**: quality score makes keep/discard decisions objective
+- **Iterative**: 12 experiments/hour, overnight yields ~100 prompt variants tested
 
 ---
 
-## Test 3: "Build a Portfolio Allocation Dashboard Page" (Micro Mode)
+## Test 3: "Build a Portfolio Dashboard"
 
 ### Input Task
-> Add a new "Portfolio" tab to the trading dashboard showing allocation pie charts and rebalancing suggestions.
+> Create a new Portfolio tab with pie charts showing asset allocation and a rebalancing interface.
 
 ### Planner Output
 
@@ -151,7 +130,7 @@ exp-006     0.0     crash    batch size 64→256 (OOM on brain)
 New Portfolio tab with pie charts and rebalancing
 
 ### Classification
-- Domain: Engineering + Trading
+- Domain: Engineering
 - Mode: Micro
 - Estimated effort: 2-3 days
 
@@ -161,17 +140,17 @@ New Portfolio tab with pie charts and rebalancing
 |------|-------|--------|-----------------|
 | Leader | CEO | Core | Phase 1 |
 | Frontend Build | Frontend Developer | Agency Engineering | Phase 2 |
-| Data Source | IG | Core | Phase 2 |
+| UX Design | UI Designer | Agency Design | Phase 2 |
 | QA | Evidence Collector | Agency Testing | Phase 3 |
 
 ### Execution Plan
 1. CEO scopes requirements via existing dashboard patterns
-2. Frontend Developer builds the Portfolio tab using existing charting libraries
-3. IG provides portfolio data (positions, allocations, P&L per instrument)
+2. UI Designer creates component layout and interaction flow
+3. Frontend Developer builds the Portfolio tab using existing charting libraries
 4. Evidence Collector screenshots desktop/tablet/mobile viewports
 
 ### Handoff Chain
-CEO (scope) → Frontend Developer (build) + IG (data) → Evidence Collector (validate)
+CEO (scope) → UI Designer (layout) → Frontend Developer (build) → Evidence Collector (validate)
 ```
 
 ### Why This Works
@@ -181,13 +160,60 @@ CEO (scope) → Frontend Developer (build) + IG (data) → Evidence Collector (v
 
 ---
 
+## Test 4: "Autonomous LLM Training Optimization" (Research Lab Example)
+
+### Input Task
+> Use the autoresearch framework to optimize a small language model overnight. Run autonomous experiments on train.py, measuring val_bpb.
+
+### Planner Output
+
+```
+## Team Proposal
+
+### Task
+Autonomous LLM training optimization using autoresearch
+
+### Classification
+- Domain: Research + AI
+- Mode: Sprint (autonomous overnight)
+- Estimated effort: 8-12 hours autonomous
+
+### Proposed Team
+
+| Role | Agent | Roster | Activation Phase |
+|------|-------|--------|-----------------|
+| Leader | CEO | Core | Phase 1 |
+| Experiment Loop | Research Lab | Research | Phase 2 |
+| ML Expertise | AI Engineer | Agency Engineering | Phase 2 |
+| Tracking | Experiment Tracker | Agency PM | Phase 2 |
+| QA | Reality Checker | Agency Testing | Phase 3 |
+
+### Execution Plan
+1. CEO sets up the autoresearch repo (uv sync, uv run prepare.py)
+2. Research Lab runs the autoresearch loop on train.py:
+   - Metric: val_bpb (lower is better)
+   - In-scope: train.py (model, optimizer, hyperparameters)
+   - Budget: 5 minutes per experiment
+   - Loop: modify → train → measure → keep/discard (NEVER STOP)
+3. AI Engineer provides architecture suggestions when the loop stalls
+4. Experiment Tracker maintains the results.tsv ledger
+5. Reality Checker reviews the final best configuration
+
+### Key: AUTONOMOUS LOOP
+The Research Lab agent runs INDEFINITELY until manually stopped.
+Expect ~12 experiments/hour, ~100 experiments overnight.
+```
+
+---
+
 ## Summary
 
 | Test | Rosters Used | Agents | Mode | Key Cross-Team Integration |
 |------|-------------|--------|------|---------------------------|
 | Astronomy Photo Analysis | Core + Agency + Research | 9 | Sprint | Research loops on image analysis, Artist + Image Prompt Engineer |
-| Silver Strategy Optimization | Core + Agency + Research | 6 | Sprint | IG + Research Lab experiment loop, AI Engineer neural tuning |
-| Portfolio Dashboard | Core + Agency | 4 | Micro | Frontend Developer + IG data, Evidence Collector QA |
+| Prompt Optimization | Core + Agency + Research | 7 | Sprint | autoresearch loop on prompt variants |
+| Portfolio Dashboard | Core + Agency | 4 | Micro | Frontend Developer + UI Designer |
+| LLM Training | Core + Agency + Research | 5 | Sprint | autoresearch loop on train.py |
 
 The Planner correctly:
 1. Classified each task's domain
@@ -195,4 +221,4 @@ The Planner correctly:
 3. Composed teams from multiple rosters where beneficial
 4. Defined clear activation phases and handoff chains
 5. Included QA agents (Evidence Collector / Reality Checker) in every proposal
-6. Leveraged cross-roster integration (Research + Artist, IG + Research Lab, etc.)
+6. Leveraged cross-roster integration (Research + Artist, Research + AI Engineer, etc.)

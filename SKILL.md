@@ -1,32 +1,87 @@
 ---
 name: team-builder
-description: Discover, compose, and activate specialist teams from 3 rosters — OpenClaw Core (CEO/IG/Artist), Agency Division (55+ specialists), and Research Lab (autonomous experiment loops). Planner proposes optimal teams; Reviewer validates deliverables.
+description: Discover, compose, and activate specialist teams from 3 rosters — OpenClaw Core (CEO/Artist), Agency Division (55+ specialists), and Research Lab (autonomous experiment loops via Karpathy's autoresearch). Planner proposes optimal teams; Reviewer validates deliverables.
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🏗️",
+        "requires": { "bins": ["bash"] },
+      },
+  }
 ---
 
 # Team Builder
 
-Compose the right team for any job by drawing from three rosters of specialists. The Planner analyzes incoming work and proposes an optimal team; the Reviewer validates deliverables before sign-off.
+Compose the right team for any job by drawing from three rosters of specialists. The Research Lab uses Karpathy's [autoresearch](https://github.com/karpathy/autoresearch) methodology for autonomous experiment loops.
 
-## Quick Start
+## Quick Start — Scripts
 
-1. **Receive a task** — any job, project, or request
-2. **Read `PLANNER.md`** in this skill folder — follow the workflow to classify the domain and propose a team
-3. **Activate specialists** — load the relevant agent definition from the reference files listed below
-4. **Execute** — hand off work through the team using the handoff templates
-5. **Review** — read `REVIEWER.md` and run the QA workflow before final delivery
+### 1. Browse available agents
+
+```bash
+bash {baseDir}/scripts/roster.sh                     # all 3 rosters
+bash {baseDir}/scripts/roster.sh -r agency            # agency only
+bash {baseDir}/scripts/roster.sh -d engineering        # one division
+bash {baseDir}/scripts/roster.sh -s "frontend"         # search
+bash {baseDir}/scripts/roster.sh -v                    # verbose descriptions
+bash {baseDir}/scripts/roster.sh -j                    # JSON output
+```
+
+### 2. Generate a team proposal
+
+```bash
+bash {baseDir}/scripts/plan.sh "Build a portfolio dashboard with pie charts"
+bash {baseDir}/scripts/plan.sh --mode sprint "Optimize image generation prompts using autoresearch"
+bash {baseDir}/scripts/plan.sh -o proposal.md "Analyze astronomy photos for star classification"
+```
+
+The planner auto-detects task domains (engineering, creative, research, marketing, operations, spatial) and proposes the right-sized team (micro/sprint/full).
+
+### 3. Activate a specialist
+
+```bash
+bash {baseDir}/scripts/activate.sh --division engineering --agent frontend-developer
+bash {baseDir}/scripts/activate.sh --division testing --agent evidence-collector
+bash {baseDir}/scripts/activate.sh --division testing --list
+bash {baseDir}/scripts/activate.sh --file reference/agency-agents-main/design/design-ui-designer.md
+bash {baseDir}/scripts/activate.sh --division engineering --agent ai-engineer --personality-only
+```
+
+Outputs the agent's full personality definition for use in delegation prompts.
+
+### 4. Run QA review
+
+```bash
+bash {baseDir}/scripts/review.sh --task "Portfolio dashboard"
+bash {baseDir}/scripts/review.sh --task "Image pipeline" --criteria criteria.txt --pass evidence
+bash {baseDir}/scripts/review.sh --task "LLM training optimization" --pass reality
+bash {baseDir}/scripts/review.sh --task "Full product" --pass both -o review.md
+```
+
+Generates review checklists (Evidence Collector Pass 1 + Reality Checker Pass 2) and logs to `~/.openclaw/team-reviews/`.
+
+### 5. Run a Research Lab experiment
+
+```bash
+bash {baseDir}/scripts/experiment.sh --setup /path/to/project     # initialize experiment
+bash {baseDir}/scripts/experiment.sh --run /path/to/project       # run one experiment cycle
+bash {baseDir}/scripts/experiment.sh --status /path/to/project    # show ledger
+```
+
+See `references/TEAM-RESEARCH.md` for the full autoresearch methodology and working examples.
 
 ## The Three Rosters
 
-### 1. Core Team (`TEAM-CORE.md`)
+### 1. Core Team (`references/TEAM-CORE.md`)
 The permanent OpenClaw agents. Always available, always running.
 
 | Agent | Role | Workspace |
 |-------|------|-----------|
 | **CEO** | Leader, orchestrator, final authority | `.openclaw/workspace/` |
-| **IG** | Trading specialist, market operations | `.openclaw/workspace-ig/` |
 | **Artist** | Image generation, visual analysis | `.openclaw/workspace-artist/` |
 
-### 2. Agency Division (`TEAM-AGENCY.md`)
+### 2. Agency Division (`references/TEAM-AGENCY.md`)
 55+ specialist agents across 9 divisions. Activated on demand from `reference/agency-agents-main/`.
 
 | Division | Agents | Key Specialists |
@@ -41,85 +96,42 @@ The permanent OpenClaw agents. Always available, always running.
 | Spatial Computing | 6 | XR Architect, visionOS Engineer |
 | Specialized | 7 | Agents Orchestrator, Data Analytics, LSP Engineer |
 
-### 3. Research Lab (`TEAM-RESEARCH.md`)
-Autonomous experiment methodology adapted from Karpathy's autoresearch. Run iterative experiment loops on any measurable problem.
+### 3. Research Lab (`references/TEAM-RESEARCH.md`)
+Autonomous experiment loops adapted from Karpathy's [autoresearch](https://github.com/karpathy/autoresearch). Set up a measurable experiment, run it in a fixed time budget, keep improvements, discard failures, loop forever.
 
-Applicable to: trading strategy optimization, image analysis pipelines, model tuning, data analysis, any domain with a measurable metric.
+Source code reference: `reference/autoresearch-master/` (program.md, train.py, prepare.py)
 
-## Cross-Team Workflows
+## Cross-Team Workflow Examples
 
-The real power is mixing specialists across rosters. Here are proven combinations:
-
-### Trading Strategy Optimization
+### Image Analysis + Research Loop
 ```
-IG (market context) + Research Lab (experiment loop) + AI Engineer (model tuning)
-→ IG provides live market data and strategy parameters
-→ Research Lab runs 5-min experiment iterations on backtests
-→ AI Engineer tunes neural network parameters
-→ Reviewer validates with evidence before deploying to live
+Artist (image acquisition) + Research Lab (analysis loop) + AI Engineer (classification)
 ```
 
 ### Visual Content Pipeline
 ```
-Artist (image generation) + Image Prompt Engineer (prompt crafting) + Visual Storyteller (narrative)
-→ Image Prompt Engineer crafts detailed, structured prompts
-→ Artist generates via xAI grok-imagine-image-pro
-→ Visual Storyteller evaluates narrative quality
-→ Iterate until quality threshold met
-```
-
-### Astronomy / Image Analysis
-```
-Artist (image capture/generation) + Research Lab (analysis loop) + AI Engineer (classification)
-→ Artist handles image acquisition and enhancement
-→ Research Lab runs iterative analysis (feature detection, classification)
-→ AI Engineer builds/tunes detection models
-→ Results feed back for next iteration
+Artist (generation) + Image Prompt Engineer (prompts) + Visual Storyteller (narrative)
 ```
 
 ### Dashboard / UI Feature Build
 ```
-Senior PM (scope) + Frontend Developer (build) + Evidence Collector (QA) + Reality Checker (sign-off)
-→ PM breaks spec into tasks with acceptance criteria
-→ Frontend Developer implements mobile-first
-→ Evidence Collector screenshots and validates each task
-→ Reality Checker gives final production-readiness verdict
+Senior PM (scope) + Frontend Developer (build) + Evidence Collector (QA)
+```
+
+### Autonomous LLM Training (autoresearch)
+```
+Research Lab (experiment loop on train.py) + AI Engineer (architecture suggestions)
+→ 12 experiments/hour, ~100 overnight, fully autonomous
 ```
 
 ### Full Product Launch
 ```
 CEO (orchestrate) + Engineering (build) + Design (UX) + Marketing (launch) + Testing (validate)
-→ CEO activates Planner to scope the project
-→ Engineering + Design work in parallel (Dev↔QA loops)
-→ Marketing prepares launch materials
-→ Reviewer signs off before go-live
 ```
-
-## Activating a Specialist
-
-To activate any Agency specialist, load their definition file:
-
-```
-Read the agent definition at:
-reference/agency-agents-main/[division]/[agent-file].md
-
-Then adopt that agent's:
-- Identity and personality
-- Core mission and rules
-- Workflow process
-- Success metrics
-```
-
-File paths follow the pattern:
-- `reference/agency-agents-main/engineering/engineering-frontend-developer.md`
-- `reference/agency-agents-main/design/design-image-prompt-engineer.md`
-- `reference/agency-agents-main/testing/testing-evidence-collector.md`
-
-See `TEAM-AGENCY.md` for the complete index with all file paths.
 
 ## Handoff Protocol
 
-When passing work between specialists, use this template:
+When passing work between specialists:
 
 ```
 ## Handoff
@@ -133,7 +145,6 @@ When passing work between specialists, use this template:
 ## Context
 - Current state: [What's been done]
 - Relevant files: [File paths]
-- Constraints: [Limits, requirements]
 
 ## Deliverable
 - What is needed: [Specific output]
@@ -142,38 +153,33 @@ When passing work between specialists, use this template:
   - [ ] [Criterion 2]
 
 ## Quality
-- Evidence required: [What proof of completion looks like]
-- Reviewer: [Who validates this deliverable]
+- Evidence required: [What proof looks like]
+- Reviewer: [Who validates]
 ```
 
-For complete handoff templates (QA pass/fail, escalation, phase gates), see:
-`reference/agency-agents-main/strategy/coordination/handoff-templates.md`
+For complete handoff templates: `reference/agency-agents-main/strategy/coordination/handoff-templates.md`
 
 ## NEXUS Pipeline Modes
 
-For larger projects, use the NEXUS pipeline from the Agency framework:
-
 | Mode | Scale | Agents | Timeline |
 |------|-------|--------|----------|
-| **Micro** | Single task/fix | 5-10 | 1-5 days |
-| **Sprint** | Feature or MVP | 15-25 | 2-6 weeks |
-| **Full** | Complete product | All | 12-24 weeks |
+| **Micro** | Single task/fix | 1-3 | Hours-days |
+| **Sprint** | Feature or MVP | 5-10 | 1-2 weeks |
+| **Full** | Complete product | 10+ | Weeks-months |
 
-Pipeline phases: Discover → Strategize → Scaffold → Build → Harden → Launch → Operate
-
-Quality gates between every phase. Evidence required for all assessments.
-
-For full NEXUS strategy: `reference/agency-agents-main/strategy/nexus-strategy.md`
-For activation prompts: `reference/agency-agents-main/strategy/coordination/agent-activation-prompts.md`
-For quickstart: `reference/agency-agents-main/strategy/QUICKSTART.md`
-
-## Reference Files in This Skill
+## Reference Files
 
 | File | Contents |
 |------|----------|
-| `SKILL.md` | This file — overview and quick start |
-| `TEAM-CORE.md` | CEO/IG/Artist trio — roles, routing, interactions |
-| `TEAM-AGENCY.md` | All 55+ Agency specialists indexed by division |
-| `TEAM-RESEARCH.md` | Autonomous experiment methodology |
-| `PLANNER.md` | Job analysis → team proposal workflow |
-| `REVIEWER.md` | QA validation workflow with quality gates |
+| `SKILL.md` | This file — overview, scripts, quick start |
+| `scripts/roster.sh` | Browse and search all agent rosters |
+| `scripts/plan.sh` | Generate team proposals from task descriptions |
+| `scripts/activate.sh` | Load agent personality definitions |
+| `scripts/review.sh` | Generate QA review checklists |
+| `scripts/experiment.sh` | Run autoresearch experiment loops |
+| `references/TEAM-CORE.md` | CEO/Artist — roles and interactions |
+| `references/TEAM-AGENCY.md` | All 55+ Agency specialists indexed by division |
+| `references/TEAM-RESEARCH.md` | Autonomous experiment methodology (autoresearch) |
+| `references/PLANNER.md` | Job analysis → team proposal workflow (detailed) |
+| `references/REVIEWER.md` | QA validation workflow with quality gates |
+| `references/PROOF-OF-WORK.md` | Example proposals showing cross-roster teams |
